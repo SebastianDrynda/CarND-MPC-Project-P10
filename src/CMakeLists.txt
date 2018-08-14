@@ -1,4 +1,4 @@
-project(MPC)
+project(CarND-MPC-Project-P10)
 
 cmake_minimum_required (VERSION 3.5)
 

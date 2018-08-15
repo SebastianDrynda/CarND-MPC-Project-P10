@@ -74,25 +74,17 @@ for instructions and the project rubric.
 
 ### The Model
 
-The model used is a Kinematic model neglecting the complex interactions between the tires and the road. The model equations are as follow:
+The model used is a kinematic model neglecting the complex interactions between the tires and the road. The kinematic model includes the vehicle's x (px) and y (py) coordinates, orientation angle (psi), and velocity (v), as well as the cross-track error (cte) and psi error (epsi). Actuator outputs are acceleration (a) and steering angle (delta). The model combines the state and actuations from the previous timestep to calculate the state for the current timestep based on the equations below:
 
 ```
-x[t] = x[t-1] + v[t-1] * cos(psi[t-1]) * dt
-y[t] = y[t-1] + v[t-1] * sin(psi[t-1]) * dt
-psi[t] = psi[t-1] + v[t-1] / Lf * delta[t-1] * dt
-v[t] = v[t-1] + a[t-1] * dt
-cte[t] = f(x[t-1]) - y[t-1] + v[t-1] * sin(epsi[t-1]) * dt
-epsi[t] = psi[t] - psides[t-1] + v[t-1] * delta[t-1] / Lf * dt
+px[t+1] = px[t] + v[t] * cos(psi[t]) * dt
+py[t+1] = py[t] + v[t] * sin(psi[t]) * dt
+psi[t+1] = psi[t] + v[t] / Lf * delta[t] * dt
+v[t+1] = v[t] + a[t] * dt
+cte[t+1] = y[t] - f(x[t]) + v[t] * sin(epsi[t]) * dt
+epsi[t+1] = psi[t] - psides[t] + v[t] * delta[t] / Lf * dt
 ```
 
-Where:
-
-- `x` : Vehicle x position.
-- `y` : Vehicle y position.
-- `psi` : Vehicle heading direction.
-- `v` : Vehicle velocity.
-- `cte` : Cross-track error.
-- `epsi` : Orientation error.
 
 Those values are considered the state of the model. In addition to that, `Lf` is the distance between the car of mass and the front wheels (this is provided by Udacity's seed project). The other two values are the model output:
 

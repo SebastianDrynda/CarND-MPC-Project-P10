@@ -86,7 +86,9 @@ epsi[t+1] = psi[t] - psides[t] + v[t] * delta[t] / Lf * dt
 ```
 
 
-Those values are considered the state of the model. In addition to that, `Lf` is the distance between the car of mass and the front wheels (this is provided by Udacity's seed project). The other two values are the model output:
+Those values are considered the state of the model. In addition to that, `Lf` is the distance between the car of mass and the front wheels (this is provided by Udacity's seed project). 
+
+Actuator outputs:
 
 - `a` : Vehicle acceleration (throttle).
 - `delta` : Steering angle.
